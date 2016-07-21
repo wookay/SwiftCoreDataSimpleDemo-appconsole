@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+import AppConsole
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -21,6 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        self.window!.backgroundColor = UIColor.whiteColor()
 //        self.window!.makeKeyAndVisible()
         
+        AppConsole(initial: self).run()
+        
+        self.demoFamily()
+        self.demoMember()
+
         return true
     }
     
@@ -43,8 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
-        self.demoFamily()
-        self.demoMember()
+//        self.demoFamily()
+//        self.demoMember()
     }
     
     func applicationWillTerminate(application: UIApplication) {
@@ -125,7 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for resultItem in result! {
             let familyItem = resultItem as! Family
             NSLog("Deleted Family for \(familyItem.name) ")
-            self.cdh.backgroundContext!.deleteObject(familyItem)
+//            self.cdh.backgroundContext!.deleteObject(familyItem)
         }
         
         self.cdh.saveContext(self.cdh.backgroundContext!)
@@ -146,6 +153,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let familyItem = resultItem as! Family
                 NSLog("Fetched Error Family for \(familyItem.name) ")
             }
+        }
+        
+        if error == nil {
+            
         }
     }
     
@@ -218,8 +229,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //delete family
         NSLog(" ======== Delete Family with cascade delete Members ======== ")
         
-        let familyItem = result![0] as! Family
-        self.cdh.managedObjectContext.deleteObject(familyItem)
+//        let familyItem = result![0] as! Family
+//        self.cdh.managedObjectContext.deleteObject(familyItem)
         
         self.cdh.saveContext(self.cdh.managedObjectContext)
         
@@ -241,6 +252,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let memberItem = resultItem as! Member
                 NSLog("Delete Failed, \(memberItem.name)")
             }
+        }
+        
+        if error == nil {
+            
         }
     }
     

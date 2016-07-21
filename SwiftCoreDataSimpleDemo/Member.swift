@@ -12,9 +12,13 @@ import CoreData
 @objc(Member)
 class Member: NSManagedObject {
 
-    @NSManaged var birthday: NSDate
+    @NSManaged var birthday: NSDate?
     @NSManaged var name: String
     @NSManaged var sex: String
     @NSManaged var family: Family
+
+    override var description: String {
+        return "Member(name: \(name), birthday: \(birthday), sex: \(sex), family: \(family.name))"
+    }
 
 }

@@ -16,4 +16,8 @@ class Family: NSManagedObject {
     @NSManaged var name: String
     @NSManaged var members: Set<Member>
 
+
+    override var description: String {
+        return "Family(name: \(name), address: \(address), members: \(members.count))"
+    }
 }

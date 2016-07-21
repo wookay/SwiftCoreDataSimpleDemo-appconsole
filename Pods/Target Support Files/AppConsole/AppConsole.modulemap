@@ -1,0 +1,6 @@
+framework module AppConsole {
+  umbrella header "AppConsole-umbrella.h"
+
+  export *
+  module * { export * }
+}
